@@ -1,0 +1,29 @@
+package com.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.dao.SessionService;
+
+@Controller
+public class HomeController {
+	@Autowired
+	SessionService sess;
+
+	@RequestMapping(value = { "/", "/index" }, method = RequestMethod.GET)
+	public String index() {
+		sess.set("pathInfo", "index");
+		return "/index";
+	}
+
+	@GetMapping("/account/info")
+	public String info(Model model) {
+		return "/user/info";
+	}
+
+	
+}
